@@ -54,6 +54,11 @@ func deleteUser(c echo.Context) error {
 	return c.NoContent(http.StatusNoContent)
 }
 
+func getAllUsers(c echo.Context) error {
+	return c.JSON(http.StatusOK, users)
+}
+
+
 func main() {
 	e := echo.New()
 
@@ -64,6 +69,8 @@ func main() {
 	e.GET("/users/:id", getUser)
 	e.PUT("/users/:id", updateUser)
 	e.DELETE("/users/:id", deleteUser)
+	e.GET("/users", getAllUsers)
+
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
